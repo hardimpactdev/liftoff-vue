@@ -81,6 +81,10 @@ import ChartArea from './src/components/Chart/ChartArea.vue';
 import ChartPie from './src/components/Chart/ChartPie.vue';
 import ChartDoughnut from './src/components/Chart/ChartDoughnut.vue';
 
+// Tree Components
+import Tree from './src/components/Tree/Tree.vue';
+export type { TreeNode } from './src/components/Tree/Tree.vue';
+
 export {
   // Plugins
   i18n,
@@ -137,4 +141,6 @@ export {
   ChartArea,
   ChartPie,
   ChartDoughnut,
+  // Tree Components
+  Tree,
 };

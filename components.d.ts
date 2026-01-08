@@ -54,6 +54,7 @@ declare module 'vue' {
     TextLink: typeof import('./src/components/TextLink.vue')['default']
     Toast: typeof import('./src/components/Toast/Toast.vue')['default']
     Toaster: typeof import('./src/components/Toast/Toaster.vue')['default']
+    Tree: typeof import('./src/components/Tree/Tree.vue')['default']
     UserInfo: typeof import('./src/components/UserInfo.vue')['default']
     UserMenuContent: typeof import('./src/components/UserMenuContent.vue')['default']
   }
