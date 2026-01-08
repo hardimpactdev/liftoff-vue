@@ -43,6 +43,7 @@ declare module 'vue' {
     KanbanColumnCards: typeof import('./src/components/Kanban/KanbanColumnCards.vue')['default']
     KanbanColumnFooter: typeof import('./src/components/Kanban/KanbanColumnFooter.vue')['default']
     KanbanColumnHeader: typeof import('./src/components/Kanban/KanbanColumnHeader.vue')['default']
+    Label: typeof import('./src/components/Label.vue')['default']
     NavFooter: typeof import('./src/components/NavFooter.vue')['default']
     NavMain: typeof import('./src/components/NavMain.vue')['default']
     NavUser: typeof import('./src/components/NavUser.vue')['default']

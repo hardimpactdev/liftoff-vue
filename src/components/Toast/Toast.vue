@@ -8,6 +8,8 @@ import {
   ToastClose,
 } from 'reka-ui';
 import { cn } from '@/lib/utils';
+import Icon from '@/components/Icon.vue';
+import Button from '@nuxt/ui/components/Button.vue';
 
 export interface ToastProps {
   as?: string;
@@ -66,7 +68,11 @@ const height = ref(0);
 onMounted(() => {
   if (!rootRef.value) return;
   nextTick(() => {
-    height.value = (rootRef.value as any)?.$el?.getBoundingClientRect()?.height;
+    // Get the DOM element from the component reference
+    const el = (rootRef.value as any)?.$el ?? rootRef.value;
+    if (el && typeof el.getBoundingClientRect === 'function') {
+      height.value = el.getBoundingClientRect()?.height ?? 0;
+    }
   });
 });
 

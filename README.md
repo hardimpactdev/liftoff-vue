@@ -155,10 +155,18 @@ const data = {
 ### Layout
 - `AppShell` - Application shell with sidebar support
 - `AppSidebar` - Collapsible sidebar navigation
+- `AppSidebarHeader` - Sidebar header with logo and collapse toggle
 - `AppContent` - Main content area
 - `NavMain` / `NavFooter` / `NavUser` - Navigation components
 - `Breadcrumbs` - Breadcrumb navigation
 - `UserInfo` - User avatar and info display
+- `UserMenuContent` - User dropdown menu content
+
+### Layouts (Full Page)
+- `AppLayout` - Base application layout
+- `AppSidebarLayout` - Application layout with sidebar
+- `AuthSimpleLayout` - Simple authentication page layout
+- `SettingsLayout` - Settings page layout
 
 ### Kanban
 - `Kanban` - Main container
@@ -172,6 +180,31 @@ const data = {
 - `Command` - Standalone command palette
 - `CommandModal` - Modal version (⌘K shortcut)
 
+### Toast
+- `Toaster` - Toast notification container
+- `useToast` - Composable for triggering toasts
+
+```vue
+<script setup>
+import { Toaster, useToast } from '@hardimpactdev/liftoff-vue';
+
+const toast = useToast();
+
+function showToast() {
+  toast.add({
+    title: 'Success!',
+    description: 'Your changes have been saved.',
+    color: 'success',
+  });
+}
+</script>
+
+<template>
+  <Toaster />
+  <Button @click="showToast">Show Toast</Button>
+</template>
+```
+
 ### Charts
 - `Chart` - Generic chart component
 - `ChartLine` - Line chart
@@ -180,15 +213,40 @@ const data = {
 - `ChartPie` - Pie chart
 - `ChartDoughnut` - Doughnut chart
 
+### Form Components
+- `Label` - Form field label
+- `InputError` - Error message display for form inputs
+
+### Typography
+- `Heading` - Page heading component
+- `HeadingSmall` - Smaller heading component
+- `TextLink` - Styled link component
+
 ### Utilities
 - `PlaceholderPattern` - SVG pattern for empty states
 - `Icon` - Icon component wrapper
+- `AppLogo` - Application logo component
+- `AppLogoIcon` - Icon-only logo component
+- `AppearanceTabs` - Theme/appearance toggle tabs
+- `DeleteUser` - User account deletion component
 
 ## Composables
 
 - `useAppearance` - Theme/appearance management
 - `useInitials` - Generate initials from names
 - `useLanguage` - Language/locale utilities
+- `useToast` - Toast notification management
+
+## Utilities
+
+- `cn` - Class name helper (clsx + tailwind-merge)
+- `__` - Translation helper (from laravel-vue-i18n)
+- `can` - Permission check utility
+
+## Nuxt UI Re-exports
+
+The library re-exports commonly used Nuxt UI components:
+- `Button`, `Input`, `Checkbox`, `Select`, `Textarea`, `FormField`
 
 ## Development
 

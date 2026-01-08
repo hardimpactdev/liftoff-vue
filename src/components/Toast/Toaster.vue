@@ -99,6 +99,7 @@ function getOffset(index: number) {
       v-for="(toast, index) of toasts"
       :key="toast.id"
       ref="refs"
+      :open="true"
       :progress="progress"
       :title="toast.title"
       :description="toast.description"
