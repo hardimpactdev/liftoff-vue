@@ -321,25 +321,37 @@ button[data-slot="base"].bg-inverted {
 }
 
 /* Button solid variant - ensure white text on dark backgrounds */
+/* Target both button and anchor elements since Nuxt UI renders as <a> when :to prop is used */
 button[data-slot="base"].bg-primary,
 button[data-slot="base"].bg-secondary,
 button[data-slot="base"].bg-success,
 button[data-slot="base"].bg-error,
 button[data-slot="base"].bg-info,
-button[data-slot="base"].bg-neutral {
+button[data-slot="base"].bg-neutral,
+a[data-slot="base"].bg-primary,
+a[data-slot="base"].bg-secondary,
+a[data-slot="base"].bg-success,
+a[data-slot="base"].bg-error,
+a[data-slot="base"].bg-info,
+a[data-slot="base"].bg-neutral {
   color: var(--ui-text-inverted, white) !important;
 }
 
 /* Dark mode - solid primary/neutral buttons need dark text on light backgrounds */
 .dark button[data-slot="base"].bg-primary,
-.dark button[data-slot="base"].bg-neutral {
+.dark button[data-slot="base"].bg-neutral,
+.dark a[data-slot="base"].bg-primary,
+.dark a[data-slot="base"].bg-neutral {
   color: var(--ui-text-inverted, oklch(0.141 0.005 285.823)) !important; /* zinc-950 */
 }
 
 /* Button outline variant - Liftoff uses shadow-xs and darker bottom border */
 button[data-slot="base"].ring-accented,
 button[data-slot="base"][class*="ring-accented"],
-button[data-slot="base"][class*="ring ring-inset ring-accented"] {
+button[data-slot="base"][class*="ring ring-inset ring-accented"],
+a[data-slot="base"].ring-accented,
+a[data-slot="base"][class*="ring-accented"],
+a[data-slot="base"][class*="ring ring-inset ring-accented"] {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   /* Liftoff uses darker bottom border */
   border-bottom-color: oklch(0.80 0.01 286);
@@ -349,7 +361,10 @@ button[data-slot="base"][class*="ring ring-inset ring-accented"] {
 /* Button soft/ghost variants - no shadow */
 button[data-slot="base"].bg-elevated,
 button[data-slot="base"][class*="bg-elevated"],
-button[data-slot="base"][class*="bg-transparent"] {
+button[data-slot="base"][class*="bg-transparent"],
+a[data-slot="base"].bg-elevated,
+a[data-slot="base"][class*="bg-elevated"],
+a[data-slot="base"][class*="bg-transparent"] {
   box-shadow: none;
 }
 
@@ -361,19 +376,30 @@ button[data-slot="base"][class*="bg-transparent"] {
 .dark button[data-slot="base"].bg-error,
 .dark button[data-slot="base"].bg-info,
 .dark button[data-slot="base"].bg-neutral,
-.dark button[data-slot="base"].bg-inverted {
+.dark button[data-slot="base"].bg-inverted,
+.dark a[data-slot="base"].bg-primary,
+.dark a[data-slot="base"].bg-secondary,
+.dark a[data-slot="base"].bg-success,
+.dark a[data-slot="base"].bg-warning,
+.dark a[data-slot="base"].bg-error,
+.dark a[data-slot="base"].bg-info,
+.dark a[data-slot="base"].bg-neutral,
+.dark a[data-slot="base"].bg-inverted {
   box-shadow: none;
   border: none;
 }
 
 .dark button[data-slot="base"].ring-accented,
-.dark button[data-slot="base"][class*="ring-accented"] {
+.dark button[data-slot="base"][class*="ring-accented"],
+.dark a[data-slot="base"].ring-accented,
+.dark a[data-slot="base"][class*="ring-accented"] {
   box-shadow: none;
 }
 
 /* Button sizes - match Liftoff sizes */
 /* XS size: h-6 (24px), text-xs, px-2 */
-button[data-slot="base"].text-xs {
+button[data-slot="base"].text-xs,
+a[data-slot="base"].text-xs {
   min-height: 1.5rem; /* 24px */
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
@@ -381,7 +407,8 @@ button[data-slot="base"].text-xs {
 }
 
 /* SM size: infer from gap-1.5 + text-xs = sm size in Nuxt UI */
-button[data-slot="base"].gap-1\.5.text-xs {
+button[data-slot="base"].gap-1\.5.text-xs,
+a[data-slot="base"].gap-1\.5.text-xs {
   min-height: 2rem; /* 32px - Liftoff sm size */
   padding-left: 0.75rem !important;
   padding-right: 0.75rem !important;
@@ -389,7 +416,8 @@ button[data-slot="base"].gap-1\.5.text-xs {
 }
 
 /* LG/XL sizes */
-button[data-slot="base"].text-base {
+button[data-slot="base"].text-base,
+a[data-slot="base"].text-base {
   min-height: 2.75rem; /* 44px */
   padding-left: 1rem !important;
   padding-right: 1rem !important;

@@ -46,7 +46,7 @@
       "types": "./dist/src/vite/defineLiftoffConfig.d.ts"
     }
   },
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "scripts": {
     "dev": "vite",
