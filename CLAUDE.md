@@ -631,11 +631,18 @@ Base color palette and accent system:
 
 ## Publishing a New Release
 
-The library can be published to GitHub. The following steps need to be taken:
+**IMPORTANT**: Always use the release skill for publishing new versions.
 
-1. Make sure there are no staged files, else ask to commit files first
-2. Make sure we are on the main branch, else ask to switch branch
-3. Bump the version in package.json, just increase the last number by 1, i.e. `0.0.20` -> `0.0.21`
-4. Commit the package.json file with a message like "Preparing new release 0.0.21"
-5. Create a tag and a release using the GitHub CLI: `gh release create 0.0.21`
-6. After the release has been created a GitHub action to actually publish the library will be initiated. Check the GitHub actions to see whether it succeeded.
+```
+/release
+```
+
+Or reference the skill documentation at `.claude/skills/release/SKILL.md`.
+
+The release skill handles:
+1. Version bumping (patch/minor/major)
+2. Committing and pushing changes
+3. Creating GitHub releases
+4. Triggering the publish workflow to GitHub Packages
+
+The package is published to GitHub Packages (`npm.pkg.github.com`), not npmjs.org. Consuming projects need a `.npmrc` configured for GitHub Packages authentication.
