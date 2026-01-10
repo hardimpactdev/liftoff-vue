@@ -59,7 +59,7 @@ function getServerConfig(mode: string) {
         return {
             host: '0.0.0.0',
             origin: appUrl,
-            allowedHosts: [url.hostname],
+            allowedHosts: true as const,
             hmr: {
                 host: url.hostname,
                 protocol: isHttps ? 'wss' : 'ws',
