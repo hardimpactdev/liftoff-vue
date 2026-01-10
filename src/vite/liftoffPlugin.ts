@@ -39,11 +39,11 @@ export function liftoff() {
             return createInertiaApp({
               title: (title) => \`\${title} - \${appName}\`,
               resolve: (name) => {
-                  const pages = import.meta.glob('/resources/js/Pages/**/*.vue', {
+                  const pages = import.meta.glob('/resources/js/pages/**/*.vue', {
                       eager: true,
                   });
 
-                  const page = pages[\`/resources/js/Pages/\${name}.vue\`];
+                  const page = pages[\`/resources/js/pages/\${name}.vue\`];
 
                   let defaultLayout = undefined;
 

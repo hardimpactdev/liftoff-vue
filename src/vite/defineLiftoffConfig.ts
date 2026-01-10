@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import laravel from 'laravel-vite-plugin';
@@ -9,6 +9,17 @@ import i18n from 'laravel-vue-i18n/vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import ui from '@nuxt/ui/vite';
 
+interface ThemeColors {
+    primary?: string;
+    secondary?: string;
+    success?: string;
+    info?: string;
+    warning?: string;
+    error?: string;
+    neutral?: string;
+    danger?: string;
+}
+
 interface viteConfigOptions {
     laravel?: {
         input?: string[];
@@ -18,19 +29,63 @@ interface viteConfigOptions {
     aliases?: any[];
     ui?: {
         localPath?: string;
+        colors?: ThemeColors;
     };
 }
 
 export function defineLiftoffConfig(options: viteConfigOptions = {}) {
-    return defineConfig({
+    return defineConfig(({ mode }) => ({
         plugins: [...pluginConfig(options), ...(options.plugins || [])],
         resolve: {
             ...aliasConfig(options.aliases, options.ui),
-        }
-    });
+        },
+        server: getServerConfig(mode),
+    }));
+}
+
+function getServerConfig(mode: string) {
+    // Only load VITE_* prefixed env vars (Vite's default secure behavior)
+    const env = loadEnv(mode, process.cwd());
+    const appUrl = env.VITE_APP_URL;
+
+    if (!appUrl) {
+        return { host: '0.0.0.0' };
+    }
+
+    try {
+        const url = new URL(appUrl);
+        const isHttps = url.protocol === 'https:';
+
+        return {
+            host: '0.0.0.0',
+            origin: appUrl,
+            allowedHosts: [url.hostname],
+            hmr: {
+                host: url.hostname,
+                protocol: isHttps ? 'wss' : 'ws',
+                clientPort: isHttps ? 443 : (parseInt(url.port) || 80),
+            },
+        };
+    } catch {
+        return { host: '0.0.0.0' };
+    }
 }
 
 export function pluginConfig(options: viteConfigOptions) {
+    // Default colors - can be overridden via options.ui.colors
+    const defaultColors: ThemeColors = {
+        primary: 'blue',
+        secondary: 'zinc',
+        success: 'green',
+        info: 'blue',
+        warning: 'orange',
+        error: 'red',
+        neutral: 'zinc',
+        danger: 'red',
+    };
+
+    const colors = { ...defaultColors, ...options.ui?.colors };
+
     return [
         liftoff(),
         laravel({
@@ -49,16 +104,8 @@ export function pluginConfig(options: viteConfigOptions) {
                 colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'danger'],
             },
             ui: {
-                colors: {
-                    primary: 'zinc',
-                    secondary: 'zinc',
-                    success: 'green',
-                    info: 'blue',
-                    warning: 'orange',
-                    error: 'red',
-                    neutral: 'zinc',
-                    danger: 'red',
-                },
+                // Color configuration - maps semantic colors to Tailwind color palettes
+                colors,
                 button: {
                     defaultVariants: {
                         color: 'primary',
