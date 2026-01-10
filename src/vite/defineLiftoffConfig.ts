@@ -45,6 +45,9 @@ export function pluginConfig(options: viteConfigOptions) {
             components: false as any,
             // Disable composable/utility auto-imports
             autoImport: false as any,
+            theme: {
+                colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'danger'],
+            },
             ui: {
                 colors: {
                     primary: 'zinc',
@@ -54,6 +57,13 @@ export function pluginConfig(options: viteConfigOptions) {
                     warning: 'orange',
                     error: 'red',
                     neutral: 'zinc',
+                    danger: 'red',
+                },
+                button: {
+                    defaultVariants: {
+                        color: 'primary',
+                        variant: 'solid',
+                    },
                 },
             },
         }),

@@ -34,30 +34,12 @@
 }
 
 /*
- * Semantic colors for Tailwind utility generation
+ * Layout and utility colors for Tailwind utility generation
+ * Semantic colors (primary, secondary, success, etc.) are handled by Nuxt UI plugin
  * Using 'initial' tells Tailwind these colors exist so it generates utilities (bg-*, text-*, etc.)
- * The actual values come from CSS variables defined in :root and .dark below
  */
 @theme {
-  /* Semantic colors - 'initial' means: generate utilities, use var(--color-*) at runtime */
-  --color-primary: initial;
-  --color-secondary: initial;
-  --color-success: initial;
-  --color-info: initial;
-  --color-warning: initial;
-  --color-error: initial;
-  --color-neutral: initial;
-
-  /* Foreground colors */
-  --color-primary-foreground: initial;
-  --color-secondary-foreground: initial;
-  --color-success-foreground: initial;
-  --color-info-foreground: initial;
-  --color-warning-foreground: initial;
-  --color-error-foreground: initial;
-  --color-neutral-foreground: initial;
-
-  /* Accent colors */
+  /* Accent colors - for custom components */
   --color-accent: initial;
   --color-accent-foreground: initial;
 
@@ -167,20 +149,7 @@
   --sidebar-ring: oklch(0.274 0.006 286.033); /* zinc-800 */
 
   /* Tailwind color mappings - these map --color-* to the base variables above */
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
-  --color-neutral: var(--neutral);
-  --color-neutral-foreground: var(--neutral-foreground);
+  /* Note: Semantic colors (primary, secondary, success, etc.) are handled by Nuxt UI plugin */
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);

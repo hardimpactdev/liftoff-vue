@@ -42,6 +42,9 @@ const config: StorybookConfig = {
     config.plugins = config.plugins || [];
     config.plugins.push(ui({
       prefix: '',
+      theme: {
+        colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'danger'],
+      },
       ui: {
         colors: {
           primary: 'zinc',
@@ -51,6 +54,13 @@ const config: StorybookConfig = {
           warning: 'orange',
           error: 'red',
           neutral: 'zinc',
+          danger: 'red',
+        },
+        button: {
+          defaultVariants: {
+            color: 'primary',
+            variant: 'solid',
+          },
         },
       },
       // Disable component auto-imports

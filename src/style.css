@@ -125,6 +125,20 @@
     --ui-color-error-950: oklch(0.258 0.092 26.042); /* red-950 */
     --ui-error: oklch(0.577 0.245 27.325); /* red-600 - base error */
 
+    /* Danger color palette - red scale (same as error, semantic alias) */
+    --ui-color-danger-50: oklch(0.971 0.013 17.38); /* red-50 */
+    --ui-color-danger-100: oklch(0.936 0.032 17.717); /* red-100 */
+    --ui-color-danger-200: oklch(0.885 0.062 18.334); /* red-200 */
+    --ui-color-danger-300: oklch(0.808 0.114 19.571); /* red-300 */
+    --ui-color-danger-400: oklch(0.704 0.191 22.216); /* red-400 */
+    --ui-color-danger-500: oklch(0.637 0.237 25.331); /* red-500 */
+    --ui-color-danger-600: oklch(0.577 0.245 27.325); /* red-600 */
+    --ui-color-danger-700: oklch(0.505 0.213 27.518); /* red-700 */
+    --ui-color-danger-800: oklch(0.444 0.177 26.899); /* red-800 */
+    --ui-color-danger-900: oklch(0.396 0.141 25.723); /* red-900 */
+    --ui-color-danger-950: oklch(0.258 0.092 26.042); /* red-950 */
+    --ui-danger: oklch(0.577 0.245 27.325); /* red-600 - base danger */
+
     /* Liftoff uses softer, lighter borders */
     --ui-border: oklch(0.92 0.004 286.32); /* zinc-200 equivalent */
     --ui-border-muted: oklch(0.94 0.002 286.32); /* even lighter */
@@ -252,6 +266,20 @@
     --ui-color-error-950: oklch(0.258 0.092 26.042);
     --ui-error: oklch(0.577 0.245 27.325);
 
+    /* Danger color palette - red scale (same as error, semantic alias) */
+    --ui-color-danger-50: oklch(0.971 0.013 17.38);
+    --ui-color-danger-100: oklch(0.936 0.032 17.717);
+    --ui-color-danger-200: oklch(0.885 0.062 18.334);
+    --ui-color-danger-300: oklch(0.808 0.114 19.571);
+    --ui-color-danger-400: oklch(0.704 0.191 22.216);
+    --ui-color-danger-500: oklch(0.637 0.237 25.331);
+    --ui-color-danger-600: oklch(0.577 0.245 27.325);
+    --ui-color-danger-700: oklch(0.505 0.213 27.518);
+    --ui-color-danger-800: oklch(0.444 0.177 26.899);
+    --ui-color-danger-900: oklch(0.396 0.141 25.723);
+    --ui-color-danger-950: oklch(0.258 0.092 26.042);
+    --ui-danger: oklch(0.577 0.245 27.325);
+
     /* Liftoff dark mode borders */
     --ui-border: oklch(0.370 0.013 285.805); /* zinc-700 */
     --ui-border-muted: oklch(0.32 0.008 286); /* darker */
@@ -291,7 +319,9 @@
  * ----------------------------------------------------------------------------- */
 
 /* Base button - increase height and padding to match Liftoff style */
-button[data-slot="base"] {
+/* Target both button and anchor elements since Nuxt UI renders as <a> when :to prop is used */
+button[data-slot="base"],
+a[data-slot="base"] {
   /* Liftoff uses h-10 (40px) for base size - achieved via min-height */
   min-height: 2.5rem; /* 40px */
   /* Liftoff uses px-4 (16px) horizontal padding for base */
@@ -304,6 +334,7 @@ button[data-slot="base"] {
 }
 
 /* Button solid variant - Liftoff inset highlight for ALL solid colored buttons */
+/* Target both button and anchor elements since Nuxt UI renders as <a> when :to prop is used */
 button[data-slot="base"].bg-primary,
 button[data-slot="base"].bg-secondary,
 button[data-slot="base"].bg-success,
@@ -311,7 +342,17 @@ button[data-slot="base"].bg-warning,
 button[data-slot="base"].bg-error,
 button[data-slot="base"].bg-info,
 button[data-slot="base"].bg-neutral,
-button[data-slot="base"].bg-inverted {
+button[data-slot="base"].bg-inverted,
+button[data-slot="base"].bg-danger,
+a[data-slot="base"].bg-primary,
+a[data-slot="base"].bg-secondary,
+a[data-slot="base"].bg-success,
+a[data-slot="base"].bg-warning,
+a[data-slot="base"].bg-error,
+a[data-slot="base"].bg-info,
+a[data-slot="base"].bg-neutral,
+a[data-slot="base"].bg-inverted,
+a[data-slot="base"].bg-danger {
   /* Liftoff solid button shadow: inset white highlight at top + subtle drop shadow */
   box-shadow:
     inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2),
@@ -328,12 +369,14 @@ button[data-slot="base"].bg-success,
 button[data-slot="base"].bg-error,
 button[data-slot="base"].bg-info,
 button[data-slot="base"].bg-neutral,
+button[data-slot="base"].bg-danger,
 a[data-slot="base"].bg-primary,
 a[data-slot="base"].bg-secondary,
 a[data-slot="base"].bg-success,
 a[data-slot="base"].bg-error,
 a[data-slot="base"].bg-info,
-a[data-slot="base"].bg-neutral {
+a[data-slot="base"].bg-neutral,
+a[data-slot="base"].bg-danger {
   color: var(--ui-text-inverted, white) !important;
 }
 
@@ -372,6 +415,7 @@ a[data-slot="base"][class*="bg-transparent"] {
 .dark button[data-slot="base"].bg-info,
 .dark button[data-slot="base"].bg-neutral,
 .dark button[data-slot="base"].bg-inverted,
+.dark button[data-slot="base"].bg-danger,
 .dark a[data-slot="base"].bg-primary,
 .dark a[data-slot="base"].bg-secondary,
 .dark a[data-slot="base"].bg-success,
@@ -379,7 +423,8 @@ a[data-slot="base"][class*="bg-transparent"] {
 .dark a[data-slot="base"].bg-error,
 .dark a[data-slot="base"].bg-info,
 .dark a[data-slot="base"].bg-neutral,
-.dark a[data-slot="base"].bg-inverted {
+.dark a[data-slot="base"].bg-inverted,
+.dark a[data-slot="base"].bg-danger {
   box-shadow: none;
   border: none;
 }

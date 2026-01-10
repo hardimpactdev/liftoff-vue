@@ -21,8 +21,14 @@ export const Colors: Story = {
     components: { Button },
     template: `
       <div class="flex items-center gap-2">
-        <Button color="primary">Primary</Button>
-        <Button color="secondary">Secondary</Button>
+        <Button color="primary" variant="solid">Primary</Button>
+        <Button color="secondary" variant="solid">Secondary</Button>
+        <Button color="success" variant="solid">Success</Button>
+        <Button color="info" variant="solid">Info</Button>
+        <Button color="warning" variant="solid">Warning</Button>
+        <Button color="error" variant="solid">Error</Button>
+        <Button color="danger" variant="solid">Danger</Button>
+        <Button color="neutral" variant="solid">Neutral</Button>
       </div>
     `,
   }),
