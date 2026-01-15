@@ -1,39 +1,27 @@
 <script setup lang="ts">
-import Avatar from '@nuxt/ui/components/Avatar.vue';
-import { useInitials } from '@/composables/useInitials';
-import type { User } from '@/types';
-import { computed } from 'vue';
-
-defineOptions({
-    inheritAttrs: false,
-});
-
-interface Props {
-  user: User;
-  showEmail?: boolean;
+interface User {
+  name?: string
+  email?: string
+  avatar?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  showEmail: false,
-});
-
-const { getInitials } = useInitials();
-
-const showAvatar = computed(() => props.user.avatar && props.user.avatar !== '');
+defineProps<{
+  user: User
+  showEmail?: boolean
+}>()
 </script>
 
 <template>
-  <Avatar
-    :src="showAvatar ? user.avatar : undefined"
-    :alt="user.name"
-    size="sm"
-    class="rounded-lg"
-  >
-    {{ getInitials(user.name) }}
-  </Avatar>
-
-  <div class="grid flex-1 text-left text-sm leading-tight">
-    <span class="truncate font-medium">{{ user.name }}</span>
-    <span v-if="showEmail" class="truncate text-xs text-muted">{{ user.email }}</span>
+  <div class="flex items-center gap-2">
+    <div v-if="user.avatar" class="h-8 w-8 overflow-hidden rounded-full">
+      <img :src="user.avatar" alt="Avatar" class="h-full w-full object-cover">
+    </div>
+    <div v-else class="bg-muted flex h-8 w-8 items-center justify-center rounded-full">
+      {{ user.name?.[0] || '?' }}
+    </div>
+    <div class="flex flex-col">
+      <span class="font-medium">{{ user.name }}</span>
+      <span v-if="showEmail" class="text-muted-foreground text-xs">{{ user.email }}</span>
+    </div>
   </div>
 </template>

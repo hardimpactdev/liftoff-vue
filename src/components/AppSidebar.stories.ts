@@ -1,12 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { h, provide, ref, computed, defineComponent, inject } from 'vue';
+import { h, provide, ref, computed, defineComponent, inject, reactive, toRefs } from 'vue';
 import { Home, FolderOpen, Settings, HelpCircle, BookOpen } from 'lucide-vue-next';
 import NavMain from './NavMain.vue';
 import NavFooter from './NavFooter.vue';
 import AppLogo from './AppLogo.vue';
 import type { NavItem } from '@/types';
 import { mockUser, mockUserWithAvatar } from '../../.storybook/inertia-mock';
-import UserInfo from './UserInfo.vue';
+
+// Mock UserInfo component since the file is missing
+const UserInfo = defineComponent({
+  name: 'UserInfo',
+  props: ['user'],
+  template: `
+    <div class="flex items-center gap-2 text-sm font-medium">
+      <div class="h-8 w-8 rounded-full bg-muted flex items-center justify-center overflow-hidden">
+        <img v-if="user.avatar" :src="user.avatar" alt="Avatar" class="h-full w-full object-cover" />
+        <span v-else>{{ user.initials || 'CN' }}</span>
+      </div>
+      <div class="grid gap-0.5 leading-none">
+        <span class="font-semibold">{{ user.name }}</span>
+        <span class="text-xs text-muted-foreground">{{ user.email }}</span>
+      </div>
+    </div>
+  `
+});
 
 // Sample navigation items
 const mainItems: NavItem[] = [
@@ -124,7 +141,7 @@ export const Default: Story = {
   render: (args) => ({
     components: { AppSidebarMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <AppSidebarMock v-bind="args">
@@ -155,7 +172,7 @@ export const Collapsed: Story = {
   render: (args) => ({
     components: { AppSidebarMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <AppSidebarMock v-bind="args">
@@ -173,7 +190,7 @@ export const WithAvatar: Story = {
   render: (args) => ({
     components: { AppSidebarMock },
     setup() {
-      return { args, user: mockUserWithAvatar };
+      return { args: toRefs(reactive(args)), user: mockUserWithAvatar };
     },
     template: `
       <AppSidebarMock v-bind="args" :user="user">

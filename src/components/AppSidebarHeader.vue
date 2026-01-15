@@ -1,41 +1,20 @@
 <script setup lang="ts">
-import Button from '@nuxt/ui/components/Button.vue';
+import { SidebarTrigger } from '@/components/sidebar';
+import { Separator } from '@/components/separator';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import { inject } from 'vue';
-import type { BreadcrumbItemType } from '@/types';
-import { Menu } from 'lucide-vue-next';
+import type { BreadcrumbItem } from '@/types';
 
-withDefaults(
-  defineProps<{
-    breadcrumbs?: BreadcrumbItemType[];
-  }>(),
-  {
-    breadcrumbs: () => [],
-  }
-);
-
-const sidebar = inject<{
-  toggle: () => void;
-}>('sidebar');
+defineProps<{
+  breadcrumbs?: BreadcrumbItem[];
+}>();
 </script>
 
 <template>
-  <header
-    class="flex h-16 shrink-0 items-center gap-2 border-b px-6 md:px-4"
-  >
-    <div class="flex items-center gap-2">
-      <Button
-        variant="ghost"
-        size="sm"
-        class="-ml-1"
-        @click="sidebar?.toggle()"
-      >
-        <Menu class="h-5 w-5" />
-        <span class="sr-only">Toggle sidebar</span>
-      </Button>
-      <template v-if="breadcrumbs && breadcrumbs.length > 0">
-        <Breadcrumbs :breadcrumbs="breadcrumbs" />
-      </template>
+  <header class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+    <div class="flex items-center gap-2 px-4">
+      <SidebarTrigger class="-ml-1" />
+      <Separator orientation="vertical" class="mr-2 h-4" />
+      <Breadcrumbs v-if="breadcrumbs" :breadcrumbs="breadcrumbs" />
     </div>
   </header>
 </template>

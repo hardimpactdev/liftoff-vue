@@ -1,157 +1,87 @@
 <script setup lang="ts">
-import Button from '@nuxt/ui/components/Button.vue';
-import CommandPalette from '@nuxt/ui/components/CommandPalette.vue';
-import Icon from '@/components/Icon.vue';
-import { computed, ref} from 'vue';
-import { cn } from '@/lib/utils';
+import type { ListboxRootEmits, ListboxRootProps } from "reka-ui"
+import type { HTMLAttributes } from "vue"
+import { reactiveOmit } from "@vueuse/core"
+import { ListboxRoot, useFilter, useForwardPropsEmits } from "reka-ui"
+import { reactive, ref, watch } from "vue"
+import { cn } from "@/lib/utils"
+import { provideCommandContext } from "."
 
-export interface CommandItem {
-  id: string;
-  label: string;
-  icon?: string;
-  kbd?: string | string[];
-  description?: string;
-  disabled?: boolean;
-  onSelect?: () => void;
+const props = withDefaults(defineProps<ListboxRootProps & { class?: HTMLAttributes["class"] }>(), {
+  modelValue: "",
+})
+
+const emits = defineEmits<ListboxRootEmits>()
+
+const delegatedProps = reactiveOmit(props, "class")
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
+const allItems = ref<Map<string, string>>(new Map())
+const allGroups = ref<Map<string, Set<string>>>(new Map())
+
+const { contains } = useFilter({ sensitivity: "base" })
+const filterState = reactive({
+  search: "",
+  filtered: {
+    /** The count of all visible items. */
+    count: 0,
+    /** Map from visible item id to its search score. */
+    items: new Map() as Map<string, number>,
+    /** Set of groups with at least one visible item. */
+    groups: new Set() as Set<string>,
+  },
+})
+
+function filterItems() {
+  if (!filterState.search) {
+    filterState.filtered.count = allItems.value.size
+    // Do nothing, each item will know to show itself because search is empty
+    return
+  }
+
+  // Reset the groups
+  filterState.filtered.groups = new Set()
+  let itemCount = 0
+
+  // Check which items should be included
+  for (const [id, value] of allItems.value) {
+    const score = contains(value, filterState.search)
+    filterState.filtered.items.set(id, score ? 1 : 0)
+    if (score)
+      itemCount++
+  }
+
+  // Check which groups have at least 1 item shown
+  for (const [groupId, group] of allGroups.value) {
+    for (const itemId of group) {
+      if (filterState.filtered.items.get(itemId)! > 0) {
+        filterState.filtered.groups.add(groupId)
+        break
+      }
+    }
+  }
+
+  filterState.filtered.count = itemCount
 }
 
-export interface CommandGroup {
-  id: string;
-  label?: string;
-  items: CommandItem[];
-}
+watch(() => filterState.search, () => {
+  filterItems()
+})
 
-interface Props {
-  groups: CommandGroup[];
-  placeholder?: string;
-  icon?: string;
-  modelValue?: CommandItem | null;
-  clearable?: boolean;
-  closable?: boolean;
-  loading?: boolean;
-  emptyText?: string;
-  class?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  placeholder: 'Search...',
-  icon: 'i-lucide-search',
-  emptyText: 'No results found',
-  clearable: false,
-  closable: false,
-  loading: false,
-});
-
-const emit = defineEmits<{
-  'update:modelValue': [value: CommandItem | null];
-  'select': [item: CommandItem];
-  'close': [];
-}>();
-
-const searchTerm = ref('');
-
-// Transform groups to Nuxt UI CommandPalette format
-const nuxtGroups = computed(() => {
-  return props.groups.map(group => ({
-    id: group.id,
-    label: group.label,
-    items: group.items.map(item => ({
-      id: item.id,
-      label: item.label,
-      icon: item.icon,
-      suffix: item.description,
-      kbds: item.kbd ? (Array.isArray(item.kbd) ? item.kbd : [item.kbd]) : undefined,
-      disabled: item.disabled,
-      onSelect: () => {
-        emit('select', item);
-        emit('update:modelValue', item);
-        item.onSelect?.();
-      },
-    })),
-  }));
-});
-
-function handleClose() {
-  emit('close');
-}
-
-function handleClear() {
-  searchTerm.value = '';
-}
+provideCommandContext({
+  allItems,
+  allGroups,
+  filterState,
+})
 </script>
 
 <template>
-  <div
-    :class="cn(
-      'w-full max-w-lg rounded-lg border border-zinc-200 bg-white shadow-lg',
-      'dark:border-zinc-700 dark:bg-zinc-800',
-      props.class
-    )"
+  <ListboxRoot
+    data-slot="command"
+    v-bind="forwarded"
+    :class="cn('bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md', props.class)"
   >
-    <!-- Search Input -->
-    <div
-      data-liftoff-command-input
-      class="flex items-center border-b border-zinc-200 px-3 dark:border-zinc-700"
-    >
-      <Icon
-        :name="props.icon"
-        class="h-5 w-5 shrink-0 text-zinc-400"
-        aria-hidden="true"
-      />
-      <input
-        v-model="searchTerm"
-        type="text"
-        :placeholder="props.placeholder"
-        aria-label="Search commands"
-        class="h-12 w-full flex-1 bg-transparent px-3 text-sm font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none dark:text-white dark:placeholder:text-zinc-500"
-      />
-      <div class="flex items-center gap-1">
-        <Button
-          v-if="props.clearable && searchTerm"
-          size="xs"
-          variant="ghost"
-          icon="i-lucide-x"
-          aria-label="Clear search"
-          class="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
-          @click="handleClear"
-        />
-        <Button
-          v-if="props.closable"
-          size="xs"
-          variant="ghost"
-          icon="i-lucide-x"
-          aria-label="Close"
-          class="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
-          @click="handleClose"
-        />
-        <div
-          v-if="props.loading"
-          class="h-4 w-4 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-600"
-        />
-      </div>
-    </div>
-
-    <!-- Results -->
-    <CommandPalette
-      :groups="nuxtGroups"
-      :placeholder="props.placeholder"
-      :loading="props.loading"
-      :search-term="searchTerm"
-      :ui="{
-        input: 'hidden',
-        container: 'max-h-[20rem]',
-        group: 'p-1.5',
-        label: 'px-2 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400',
-        item: 'group flex items-center gap-2 px-2 py-1.5 rounded-md cursor-pointer text-sm font-medium text-zinc-800 dark:text-white data-[active]:bg-zinc-100 dark:data-[active]:bg-zinc-700',
-        itemLeadingIcon: 'h-4 w-4 text-zinc-500 dark:text-zinc-400',
-        empty: 'p-4 text-center text-sm text-zinc-500 dark:text-zinc-400',
-      }"
-    >
-      <template #empty>
-        <div class="p-4 text-center text-sm text-zinc-500 dark:text-zinc-400">
-          {{ props.emptyText }}
-        </div>
-      </template>
-    </CommandPalette>
-  </div>
+    <slot />
+  </ListboxRoot>
 </template>

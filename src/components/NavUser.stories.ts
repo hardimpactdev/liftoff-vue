@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { h, ref } from 'vue';
+import { h, ref, reactive, toRefs } from 'vue';
 import { within, userEvent, expect } from 'storybook/test';
-import Popover from '@nuxt/ui/components/Popover.vue';
+import Popover from './popover/Popover.vue';
 import NavUser from './NavUser.vue';
 import UserInfo from './UserInfo.vue';
 import UserMenuContent from './UserMenuContent.vue';
@@ -71,7 +71,7 @@ export const Default: Story = {
   render: (args) => ({
     components: { NavUserMock },
     setup() {
-      return { args, user: mockUser };
+      return { args: toRefs(reactive(args)), user: mockUser };
     },
     template: `
       <div class="w-64 bg-background border rounded-lg">
@@ -88,7 +88,7 @@ export const WithAvatar: Story = {
   render: (args) => ({
     components: { NavUserMock },
     setup() {
-      return { args, user: mockUserWithAvatar };
+      return { args: toRefs(reactive(args)), user: mockUserWithAvatar };
     },
     template: `
       <div class="w-64 bg-background border rounded-lg">
@@ -105,7 +105,7 @@ export const Collapsed: Story = {
   render: (args) => ({
     components: { NavUserMock },
     setup() {
-      return { args, user: mockUser };
+      return { args: toRefs(reactive(args)), user: mockUser };
     },
     template: `
       <div class="w-16 bg-background border rounded-lg">
@@ -122,7 +122,7 @@ export const WithInteraction: Story = {
   render: (args) => ({
     components: { NavUserMock },
     setup() {
-      return { args, user: mockUser };
+      return { args: toRefs(reactive(args)), user: mockUser };
     },
     template: `
       <div class="w-64 bg-background border rounded-lg">

@@ -1,30 +1,18 @@
 <script setup lang="ts">
-import Separator from '@nuxt/ui/components/Separator.vue';
-import UserInfo from '@/components/UserInfo.vue';
-import type { User, SharedData } from '@/types';
-import { Link, router, usePage } from '@inertiajs/vue3';
-import { LogOut, Settings } from 'lucide-vue-next';
+import Separator from './separator/Separator.vue'
+import UserInfo from './UserInfo.vue'
+import { LogOut, Settings } from 'lucide-vue-next'
 
-defineOptions({
-    inheritAttrs: false,
-});
-
-interface Props {
-  user: User;
-}
-
-const handleLogout = () => {
-  router.flushAll();
-};
-
-defineProps<Props>();
-
-const page = usePage<SharedData>();
+defineProps<{
+  user: any
+  onSettings?: () => void
+  onLogout?: () => void
+}>()
 </script>
 
 <template>
   <div class="p-2">
-    <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+    <div class="px-1 py-1.5 text-sm text-left flex items-center gap-2">
       <UserInfo :user="user" :show-email="true" />
     </div>
   </div>
@@ -32,28 +20,24 @@ const page = usePage<SharedData>();
   <Separator />
 
   <div class="p-1">
-    <Link
+    <button
       class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted"
-      :href="page.props.navigation.app.settings"
-      prefetch
+      @click="onSettings"
     >
       <Settings class="h-4 w-4" />
       Settings
-    </Link>
+    </button>
   </div>
 
   <Separator />
 
   <div class="p-1">
-    <Link
+    <button
       class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted"
-      method="post"
-      :href="page.props.navigation.app.logout"
-      @click="handleLogout"
-      as="button"
+      @click="onLogout"
     >
       <LogOut class="h-4 w-4" />
       Log out
-    </Link>
+    </button>
   </div>
 </template>

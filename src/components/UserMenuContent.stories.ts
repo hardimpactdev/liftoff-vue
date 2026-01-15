@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { fn, within, userEvent, expect } from 'storybook/test';
-import { h } from 'vue';
-import Separator from '@nuxt/ui/components/Separator.vue';
+import { h, reactive, toRefs } from 'vue';
+import Separator from './separator/Separator.vue';
 import UserInfo from './UserInfo.vue';
 import { LogOut, Settings } from 'lucide-vue-next';
 import { mockUser, mockUserWithAvatar } from '../../.storybook/inertia-mock';
@@ -74,7 +74,7 @@ export const Default: Story = {
   render: (args) => ({
     components: { UserMenuContentMock },
     setup() {
-      return { args, user: mockUser };
+      return { args: toRefs(reactive(args)), user: mockUser };
     },
     template: `
       <div class="w-56 bg-background border rounded-lg shadow-lg">
@@ -96,7 +96,7 @@ export const WithAvatar: Story = {
   render: (args) => ({
     components: { UserMenuContentMock },
     setup() {
-      return { args, user: mockUserWithAvatar };
+      return { args: toRefs(reactive(args)), user: mockUserWithAvatar };
     },
     template: `
       <div class="w-56 bg-background border rounded-lg shadow-lg">
@@ -118,7 +118,7 @@ export const WithInteraction: Story = {
   render: (args) => ({
     components: { UserMenuContentMock },
     setup() {
-      return { args, user: mockUser };
+      return { args: toRefs(reactive(args)), user: mockUser };
     },
     template: `
       <div class="w-56 bg-background border rounded-lg shadow-lg">

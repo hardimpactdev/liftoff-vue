@@ -1,146 +1,106 @@
 export const styles = () => import('./src/style.css');
 
-// Plugins
-import i18n from './src/plugins/i18n.ts';
-
-// Re-export Nuxt UI components used in liftoff stubs
-// These are externalized and must be provided by the consuming project
-export { default as Button } from '@nuxt/ui/components/Button.vue';
-export { default as Input } from '@nuxt/ui/components/Input.vue';
-export { default as Checkbox } from '@nuxt/ui/components/Checkbox.vue';
-export { default as Select } from '@nuxt/ui/components/Select.vue';
-export { default as Textarea } from '@nuxt/ui/components/Textarea.vue';
-export { default as FormField } from '@nuxt/ui/components/FormField.vue';
-
-// Custom Label component (Nuxt UI doesn't have a standalone Label)
-import Label from './src/components/Label.vue';
-
 // Layouts
 import AuthSimpleLayout from './src/layouts/auth/AuthSimpleLayout.vue';
-import AppLayout from './src/layouts/app/AppLayout.vue';
-import AppSidebarLayout from './src/layouts/app/AppSidebarLayout.vue';
+// import AppLayout from './src/layouts/app/AppLayout.vue';
+// import AppSidebarLayout from './src/layouts/app/AppSidebarLayout.vue';
 import SettingsLayout from './src/layouts/settings/SettingsLayout.vue';
+
+// Plugins
+import i18n from './src/plugins/i18n.ts';
 
 // Composables
 import { useAppearance } from './src/composables/useAppearance.ts';
 import { useInitials } from './src/composables/useInitials.ts';
 import { useLanguage } from './src/composables/useLanguage.ts';
 
-// Custom Toast composable (works without Nuxt's #imports)
+// Custom Toast composable
 export { useToast, toastMaxInjectionKey, type Toast } from './src/composables/useToast';
 
-// Note: Nuxt UI composables like useOverlay, defineShortcuts, useFileUpload, useKbd, useScrollspy
-// are NOT re-exported because they trigger bundling of files with Nuxt-specific #imports.
-// Import them directly from '@nuxt/ui/composables' if needed (only works in Nuxt apps).
+// Custom Toaster
+// export { default as Toaster } from './src/components/Toast/Toaster.vue';
 
-// Custom Toaster component (works without Nuxt's #imports)
-export { default as Toaster } from './src/components/Toast/Toaster.vue';
 
 // Utils
 import { cn, __, can } from './src/lib/utils.ts';
 
-// Custom Components
-import InputError from './src/components/InputError.vue';
-import TextLink from './src/components/TextLink.vue';
-import DeleteUser from './src/components/DeleteUser.vue';
-import HeadingSmall from './src/components/HeadingSmall.vue';
-import Heading from './src/components/Heading.vue';
-import AppearanceTabs from './src/components/AppearanceTabs.vue';
-import PlaceholderPattern from './src/components/PlaceholderPattern.vue';
-import AppLogo from './src/components/AppLogo.vue';
-import AppLogoIcon from './src/components/AppLogoIcon.vue';
-import AppSidebarHeader from './src/components/AppSidebarHeader.vue';
-import AppContent from './src/components/AppContent.vue';
-import Breadcrumbs from './src/components/Breadcrumbs.vue';
-import UserInfo from './src/components/UserInfo.vue';
-import NavFooter from './src/components/NavFooter.vue';
-import NavMain from './src/components/NavMain.vue';
-import NavUser from './src/components/NavUser.vue';
-import AppShell from './src/components/AppShell.vue';
-import AppSidebar from './src/components/AppSidebar.vue';
-import UserMenuContent from './src/components/UserMenuContent.vue';
-import Icon from './src/components/Icon.vue';
-
-// Kanban Components
-import Kanban from './src/components/Kanban/Kanban.vue';
-import KanbanColumn from './src/components/Kanban/KanbanColumn.vue';
-import KanbanColumnHeader from './src/components/Kanban/KanbanColumnHeader.vue';
-import KanbanColumnCards from './src/components/Kanban/KanbanColumnCards.vue';
-import KanbanColumnFooter from './src/components/Kanban/KanbanColumnFooter.vue';
-import KanbanCard from './src/components/Kanban/KanbanCard.vue';
-
-// Command Components
-import Command from './src/components/Command/Command.vue';
-import CommandModal from './src/components/Command/CommandModal.vue';
-
-// Chart Components
-import Chart from './src/components/Chart/Chart.vue';
-import ChartLine from './src/components/Chart/ChartLine.vue';
-import ChartBar from './src/components/Chart/ChartBar.vue';
-import ChartArea from './src/components/Chart/ChartArea.vue';
-import ChartPie from './src/components/Chart/ChartPie.vue';
-import ChartDoughnut from './src/components/Chart/ChartDoughnut.vue';
-
-// Tree Components
-import Tree from './src/components/Tree/Tree.vue';
-export type { TreeNode } from './src/components/Tree/Tree.vue';
+// Shadcn Components
+export * from "./src/components/accordion";
+export * from "./src/components/alert";
+export * from "./src/components/alert-dialog";
+export * from "./src/components/aspect-ratio";
+export * from "./src/components/avatar";
+export * from "./src/components/badge";
+export * from "./src/components/breadcrumb";
+export * from "./src/components/button";
+export * from "./src/components/button-group";
+export * from "./src/components/calendar";
+export * from "./src/components/card";
+export * from "./src/components/carousel";
+export * from "./src/components/chart";
+export * from "./src/components/checkbox";
+export * from "./src/components/collapsible";
+export * from "./src/components/combobox";
+export * from "./src/components/command";
+export * from "./src/components/context-menu";
+export * from "./src/components/dialog";
+export * from "./src/components/drawer";
+export * from "./src/components/dropdown-menu";
+export * from "./src/components/empty";
+export * from "./src/components/field";
+export * from "./src/components/form";
+export * from "./src/components/hover-card";
+export * from "./src/components/input";
+export * from "./src/components/input-group";
+export * from "./src/components/input-otp";
+export * from "./src/components/item";
+export * from "./src/components/kbd";
+export * from "./src/components/label";
+export * from "./src/components/menubar";
+export * from "./src/components/native-select";
+export * from "./src/components/navigation-menu";
+export * from "./src/components/number-field";
+export * from "./src/components/pagination";
+export * from "./src/components/pin-input";
+export * from "./src/components/popover";
+export * from "./src/components/progress";
+export * from "./src/components/radio-group";
+export * from "./src/components/range-calendar";
+export * from "./src/components/resizable";
+export * from "./src/components/scroll-area";
+export * from "./src/components/select";
+export * from "./src/components/separator";
+export * from "./src/components/sheet";
+export * from "./src/components/sidebar";
+export * from "./src/components/skeleton";
+export * from "./src/components/slider";
+export * from "./src/components/sonner";
+export * from "./src/components/spinner";
+export * from "./src/components/stepper";
+export * from "./src/components/switch";
+export * from "./src/components/table";
+export * from "./src/components/tabs";
+export * from "./src/components/tags-input";
+export * from "./src/components/textarea";
+export * from "./src/components/toggle";
+export * from "./src/components/toggle-group";
+export * from "./src/components/tooltip";
 
 export {
-  // Plugins
-  i18n,
-  // Custom UI Components
-  Label,
-  // Layouts
-  AuthSimpleLayout,
-  AppLayout,
-  AppSidebarLayout,
-  SettingsLayout,
-  // Composables
-  useAppearance,
-  useInitials,
-  useLanguage,
-  // Utils
-  cn,
-  __,
-  can,
-  // Custom Components
-  InputError,
-  TextLink,
-  DeleteUser,
-  HeadingSmall,
-  Heading,
-  AppearanceTabs,
-  PlaceholderPattern,
-  AppLogo,
-  AppLogoIcon,
-  AppSidebarHeader,
-  AppContent,
-  Breadcrumbs,
-  UserInfo,
-  NavFooter,
-  NavMain,
-  NavUser,
-  AppShell,
-  AppSidebar,
-  UserMenuContent,
-  Icon,
-  // Kanban Components
-  Kanban,
-  KanbanColumn,
-  KanbanColumnHeader,
-  KanbanColumnCards,
-  KanbanColumnFooter,
-  KanbanCard,
-  // Command Components
-  Command,
-  CommandModal,
-  // Chart Components
-  Chart,
-  ChartLine,
-  ChartBar,
-  ChartArea,
-  ChartPie,
-  ChartDoughnut,
-  // Tree Components
-  Tree,
+    // Plugins
+    i18n,
+    // Utils
+    cn,
+    __,
+    can,
+    // Layouts
+    // Layouts
+    AuthSimpleLayout,
+    // AppLayout,
+    // AppSidebarLayout,
+    SettingsLayout,
+    // Composables
+    useAppearance,
+    useInitials,
+    useLanguage,
 };
