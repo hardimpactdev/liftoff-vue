@@ -1,8 +1,8 @@
-This is a Storybook project which manages the Liftoff UI library. The library provides Vue.js components, composables, and utilities for rapidly building user interfaces with the Liftoff stack.
+This is a Storybook project which manages the Craft UI library. The library provides Vue.js components, composables, and utilities for rapidly building user interfaces with the Craft stack.
 
 ## Design Principles
 
-Liftoff UI follows a set of design principles emphasizing calm, clean interfaces that don't overwhelm users.
+Craft UI follows a set of design principles emphasizing calm, clean interfaces that don't overwhelm users.
 
 ### 1. Calm Over Loud
 
@@ -120,7 +120,7 @@ The bun runtime is being used instead of node.
 
 ## Structure
 
-- `./src/components` - Custom liftoff components (navigation, layouts, etc.)
+- `./src/components` - Custom craft components (navigation, layouts, etc.)
 - `./src/composables` - Vue composables (useAppearance, useInitials, useLanguage)
 - `./src/layouts` - Layout components for apps
 - `./src/vite` - Vite plugin configuration
@@ -206,9 +206,9 @@ The package provides a Vite configuration helper for Laravel + Inertia + Vue app
 
 ```typescript
 // vite.config.ts
-import { defineLiftoffConfig } from '@hardimpactdev/liftoff-vue/vite';
+import { defineCraftConfig } from '@hardimpactdev/craft-ui/vite';
 
-export default defineLiftoffConfig({
+export default defineCraftConfig({
   laravel: {
     input: ['resources/js/app.ts'],
   },
@@ -224,7 +224,7 @@ The plugin includes:
 
 ## Custom Components
 
-Liftoff provides custom components built on top of Nuxt UI:
+Craft provides custom components built on top of Nuxt UI:
 
 ### Layout Components
 - **AppShell** - Application shell with sidebar support
@@ -268,7 +268,7 @@ Command palette wrapper around Nuxt UI's CommandPalette.
 ```
 
 ### Chart Components
-Chart.js integration with Liftoff-style defaults.
+Chart.js integration with Craft-style defaults.
 
 - **Chart** - Generic chart (type: line, bar, area, pie, doughnut)
 - **ChartLine** - Line chart
@@ -301,7 +301,7 @@ The theme uses a clean, modern design with subtle borders and zinc neutrals.
 
 Nuxt UI theming involves three layers:
 
-1. **Nuxt UI Plugin Config** (`src/vite/defineLiftoffConfig.ts` & `.storybook/main.ts`)
+1. **Nuxt UI Plugin Config** (`src/vite/defineCraftConfig.ts` & `.storybook/main.ts`)
 2. **CSS Variables** (`src/theme.css`)
 3. **Component Overrides** (`src/style.css`)
 
@@ -329,7 +329,7 @@ Nuxt UI components use `data-slot` attributes and ARIA roles to identify parts. 
 Configure semantic colors in the Vite plugin. All semantic colors must be mapped to available Tailwind color palettes:
 
 ```typescript
-// src/vite/defineLiftoffConfig.ts
+// src/vite/defineCraftConfig.ts
 ui({
   prefix: '',
   inertia: true,
@@ -419,7 +419,7 @@ Target Nuxt UI components using `data-slot` attributes and class selectors:
 ```css
 /* All buttons - base sizing */
 button[data-slot="base"] {
-  min-height: 2.5rem;           /* 40px - Liftoff base height */
+  min-height: 2.5rem;           /* 40px - Craft base height */
   padding-left: 1rem;           /* px-4 */
   padding-right: 1rem;
   border-radius: 0.5rem;        /* rounded-lg */
@@ -483,9 +483,9 @@ textarea[data-slot="base"] {
 ```css
 /* Checkboxes use rounded-sm class */
 button[data-slot="base"].rounded-sm {
-  width: 1.125rem;              /* 18px - Liftoff size */
+  width: 1.125rem;              /* 18px - Craft size */
   height: 1.125rem;
-  border-radius: 0.3rem;        /* Liftoff rounded-[.3rem] */
+  border-radius: 0.3rem;        /* Craft rounded-[.3rem] */
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border: 1px solid oklch(0.752 0.012 285.895); /* zinc-300 */
 }
@@ -558,7 +558,7 @@ Base color palette and accent system:
 
 ```css
 @theme inline {
-  /* Liftoff accent color system */
+  /* Craft accent color system */
   --color-accent: var(--color-zinc-800);
   --color-accent-content: var(--color-zinc-800);
   --color-accent-foreground: var(--color-white);
@@ -587,7 +587,7 @@ Base color palette and accent system:
 |------|---------|
 | `src/style.css` | Nuxt UI variable overrides, component styling |
 | `src/theme.css` | Base color palette, accent colors, fonts |
-| `src/vite/defineLiftoffConfig.ts` | Nuxt UI plugin config for consuming apps |
+| `src/vite/defineCraftConfig.ts` | Nuxt UI plugin config for consuming apps |
 | `.storybook/main.ts` | Nuxt UI plugin config for Storybook |
 
 ### Common Customization Tasks

@@ -9,9 +9,9 @@ const theme = create({
   fontCode: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace',
 
   // Brand
-  brandTitle: 'Liftoff UI',
+  brandTitle: 'Craft UI',
 
-  // UI colors - Liftoff-inspired zinc palette
+  // UI colors - Craft-inspired zinc palette
   colorPrimary: '#27272a', // zinc-800
   colorSecondary: '#27272a', // zinc-800
 

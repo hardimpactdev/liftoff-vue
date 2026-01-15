@@ -1,15 +1,15 @@
-export function liftoff() {
+export function craft() {
   const plugins = [];
 
   // Core plugin
   plugins.push({
-    name: 'liftoff',
+    name: 'craft',
     enforce: 'pre',
     config() {
       return {
         optimizeDeps: {
           exclude: [
-            '@hardimpactdev/liftoff-vue',
+            '@hardimpactdev/craft-ui',
             '@tailwindcss/vite',
             'laravel-vue-i18n/vite'
           ]
@@ -18,22 +18,22 @@ export function liftoff() {
     },
 
     resolveId(id: string) {
-      if (id === 'virtual:liftoff') {
+      if (id === 'virtual:craft') {
         return id;
       }
     },
     load(id: string) {
-      if (id === 'virtual:liftoff') {
+      if (id === 'virtual:craft') {
         return `
           import { createInertiaApp } from "@inertiajs/vue3";
           import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
           import { createApp, h } from "vue";
-          import { i18n } from "@hardimpactdev/liftoff-vue";
+          import { i18n } from "@hardimpactdev/craft-ui";
           import { TooltipProvider } from "reka-ui";
 
           const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
-          export function initializeLiftoff(options) {
+          export function initializeCraft(options) {
             const { enhanceVue, layouts } = options || {};
 
             return createInertiaApp({

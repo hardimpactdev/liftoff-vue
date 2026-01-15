@@ -1,5 +1,5 @@
 {
-  "name": "@hardimpactdev/liftoff-vue",
+  "name": "@hardimpactdev/craft-ui",
   "description": "A Vue 3 component library for building clean, calm user interfaces. Built on Nuxt UI with layout, navigation, kanban, and chart components.",
   "author": "Hard Impact <hello@hardimpact.dev>",
   "license": "MIT",
@@ -16,13 +16,13 @@
     "charts",
     "typescript"
   ],
-  "homepage": "https://github.com/hardimpactdev/liftoff-vue#readme",
+  "homepage": "https://github.com/hardimpactdev/craft-ui#readme",
   "bugs": {
-    "url": "https://github.com/hardimpactdev/liftoff-vue/issues"
+    "url": "https://github.com/hardimpactdev/craft-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hardimpactdev/liftoff-vue.git"
+    "url": "git+https://github.com/hardimpactdev/craft-ui.git"
   },
   "publishConfig": {
     "access": "public",
@@ -34,19 +34,19 @@
   "include": [
     "src"
   ],
-  "main": "dist/liftoff-vue.js",
+  "main": "dist/craft-ui.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/liftoff-vue.js",
+      "import": "./dist/craft-ui.js",
       "types": "./dist/index.d.ts"
     },
     "./vite": {
-      "import": "./dist/vite/defineLiftoffConfig.js",
-      "types": "./dist/src/vite/defineLiftoffConfig.d.ts"
+      "import": "./dist/vite/defineCraftConfig.js",
+      "types": "./dist/src/vite/defineCraftConfig.d.ts"
     }
   },
-  "version": "0.1.17",
+  "version": "0.1.18",
   "type": "module",
   "scripts": {
     "dev": "vite",

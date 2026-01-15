@@ -10,8 +10,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'index.ts'),
-      name: 'Liftoff UI',
-      fileName: 'liftoff-vue',
+      name: 'Craft UI',
+      fileName: 'craft-ui',
       formats: ['es'],
     },
     rollupOptions: {

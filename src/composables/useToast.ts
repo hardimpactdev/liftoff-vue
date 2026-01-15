@@ -19,12 +19,12 @@ export interface Toast {
 // CustomEvent is a reliable browser API that works across module boundaries
 declare global {
   interface Window {
-    __LIFTOFF_TOASTS_DATA__?: Toast[];
-    __LIFTOFF_TOAST_ID__?: number;
+    __CRAFT_TOASTS_DATA__?: Toast[];
+    __CRAFT_TOAST_ID__?: number;
   }
 }
 
-const TOAST_UPDATE_EVENT = 'liftoff:toast-update';
+const TOAST_UPDATE_EVENT = 'craft:toast-update';
 
 // SSR fallback
 const ssrToasts: Toast[] = [];
@@ -34,10 +34,10 @@ function getToastsData(): Toast[] {
   if (typeof window === 'undefined') {
     return ssrToasts;
   }
-  if (!window.__LIFTOFF_TOASTS_DATA__) {
-    window.__LIFTOFF_TOASTS_DATA__ = [];
+  if (!window.__CRAFT_TOASTS_DATA__) {
+    window.__CRAFT_TOASTS_DATA__ = [];
   }
-  return window.__LIFTOFF_TOASTS_DATA__;
+  return window.__CRAFT_TOASTS_DATA__;
 }
 
 function notifyUpdate(): void {
@@ -50,10 +50,10 @@ function generateId(): number {
   if (typeof window === 'undefined') {
     return ++ssrToastId;
   }
-  if (window.__LIFTOFF_TOAST_ID__ === undefined) {
-    window.__LIFTOFF_TOAST_ID__ = 0;
+  if (window.__CRAFT_TOAST_ID__ === undefined) {
+    window.__CRAFT_TOAST_ID__ = 0;
   }
-  return ++window.__LIFTOFF_TOAST_ID__;
+  return ++window.__CRAFT_TOAST_ID__;
 }
 
 export function useToast() {

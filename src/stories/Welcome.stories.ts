@@ -5,7 +5,7 @@ const Welcome = defineComponent({
   name: 'Welcome',
   render() {
     return h('div', { class: 'p-8 space-y-6' }, [
-      h('h1', { class: 'text-3xl font-bold' }, 'Liftoff Vue'),
+      h('h1', { class: 'text-3xl font-bold' }, 'Craft UI'),
       h('p', { class: 'text-muted-foreground' },
         'A UI library for Laravel + Inertia + Vue applications, powered by Nuxt UI.'
       ),

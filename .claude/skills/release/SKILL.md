@@ -1,10 +1,10 @@
 ---
 name: release
-description: Publish a new release of @hardimpactdev/liftoff-vue to GitHub Packages. Handles version bumping, git tagging, and triggering the publish workflow.
+description: Publish a new release of @hardimpactdev/craft-ui to GitHub Packages. Handles version bumping, git tagging, and triggering the publish workflow.
 allowed-tools: Read, Write, Edit, Bash, Glob
 ---
 
-# Release Workflow for @hardimpactdev/liftoff-vue
+# Release Workflow for @hardimpactdev/craft-ui
 
 Publish new versions to GitHub Packages npm registry.
 
@@ -44,7 +44,7 @@ gh release create "v$VERSION" --title "v$VERSION" --notes "Release v$VERSION"
 
 ```json
 {
-  "name": "@hardimpactdev/liftoff-vue",
+  "name": "@hardimpactdev/craft-ui",
   "publishConfig": {
     "@hardimpactdev:registry": "https://npm.pkg.github.com"
   }
@@ -71,7 +71,7 @@ The workflow **must** overwrite any committed `.npmrc` to ensure proper authenti
 
 **Symptoms:**
 ```
-npm error 401 Unauthorized - PUT https://npm.pkg.github.com/@hardimpactdev%2fliftoff-vue
+npm error 401 Unauthorized - PUT https://npm.pkg.github.com/@hardimpactdev%2fcraft-ui
 - unauthenticated: User cannot be authenticated with the token provided.
 ```
 
@@ -116,7 +116,7 @@ GitHub Packages requires **classic** Personal Access Tokens. Fine-grained PATs d
 
 3. Install:
 ```bash
-npm install @hardimpactdev/liftoff-vue
+npm install @hardimpactdev/craft-ui
 ```
 
 ## Monitoring
@@ -133,7 +133,7 @@ gh run view <run-id> --log-failed
 
 ### List Published Versions (requires read:packages)
 ```bash
-gh api /orgs/hardimpactdev/packages/npm/liftoff-vue/versions --jq '.[].name'
+gh api /orgs/hardimpactdev/packages/npm/craft-ui/versions --jq '.[].name'
 ```
 
 ## Local Development Setup
@@ -196,25 +196,25 @@ x-oauth-scopes: repo, read:packages, write:packages, delete:packages
 
 ### List All Versions
 ```bash
-gh api /orgs/hardimpactdev/packages/npm/liftoff-vue/versions --jq '.[] | "\(.id): \(.name)"'
+gh api /orgs/hardimpactdev/packages/npm/craft-ui/versions --jq '.[] | "\(.id): \(.name)"'
 ```
 
 ### Delete a Specific Version
 ```bash
 # Get version ID from list above, then:
-gh api -X DELETE /orgs/hardimpactdev/packages/npm/liftoff-vue/versions/<version-id>
+gh api -X DELETE /orgs/hardimpactdev/packages/npm/craft-ui/versions/<version-id>
 ```
 
 ### Delete Multiple Old Versions
 ```bash
 # Delete all versions except the 5 most recent
-gh api /orgs/hardimpactdev/packages/npm/liftoff-vue/versions --jq '.[5:] | .[].id' | \
-  xargs -I {} gh api -X DELETE /orgs/hardimpactdev/packages/npm/liftoff-vue/versions/{}
+gh api /orgs/hardimpactdev/packages/npm/craft-ui/versions --jq '.[5:] | .[].id' | \
+  xargs -I {} gh api -X DELETE /orgs/hardimpactdev/packages/npm/craft-ui/versions/{}
 ```
 
 ## Key Learnings
 
-1. **Committed `.npmrc` overrides CI config**: If `.npmrc` is in the repo with undefined env vars (like `${LIFTOFF_VUE}`), it overrides what `setup-node` configures. The workflow must explicitly overwrite it.
+1. **Committed `.npmrc` overrides CI config**: If `.npmrc` is in the repo with undefined env vars (like `${CRAFT_UI}`), it overrides what `setup-node` configures. The workflow must explicitly overwrite it.
 
 2. **Scope-specific registry format**: For scoped packages (@org/package), use `@org:registry=` format (not `@org/package:registry=`).
 

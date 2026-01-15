@@ -41,8 +41,8 @@ export const mockUserWithAvatar: User = {
 
 // Mock SharedData for components that use usePage()
 export const mockSharedData: SharedData = {
-  name: 'Liftoff App',
-  quote: { message: 'Build something great', author: 'Liftoff Team' },
+  name: 'Craft App',
+  quote: { message: 'Build something great', author: 'Craft Team' },
   auth: { user: mockUser },
   location: { current: '/dashboard', previous: '/' },
   navigation: {
