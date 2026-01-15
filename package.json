@@ -1,5 +1,5 @@
 {
-  "name": "@hardimpactdev/liftoff-vue",
+  "name": "@hardimpactdev/craft-ui",
   "description": "A Vue 3 component library for building clean, calm user interfaces. Built on Nuxt UI with layout, navigation, kanban, and chart components.",
   "author": "Hard Impact <hello@hardimpact.dev>",
   "license": "MIT",
@@ -16,16 +16,17 @@
     "charts",
     "typescript"
   ],
-  "homepage": "https://github.com/hardimpactdev/liftoff-vue#readme",
+  "homepage": "https://github.com/hardimpactdev/craft-ui#readme",
   "bugs": {
-    "url": "https://github.com/hardimpactdev/liftoff-vue/issues"
+    "url": "https://github.com/hardimpactdev/craft-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hardimpactdev/liftoff-vue.git"
+    "url": "git+https://github.com/hardimpactdev/craft-ui.git"
   },
   "publishConfig": {
-    "@hardimpactdev:registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "files": [
     "dist"
@@ -33,19 +34,19 @@
   "include": [
     "src"
   ],
-  "main": "dist/liftoff-vue.js",
+  "main": "dist/craft-ui.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/liftoff-vue.js",
+      "import": "./dist/craft-ui.js",
       "types": "./dist/index.d.ts"
     },
     "./vite": {
-      "import": "./dist/vite/defineLiftoffConfig.js",
-      "types": "./dist/src/vite/defineLiftoffConfig.d.ts"
+      "import": "./dist/vite/defineCraftConfig.js",
+      "types": "./dist/src/vite/defineCraftConfig.d.ts"
     }
   },
-  "version": "0.1.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -60,25 +61,32 @@
     "@iconify/vue": "^5.0.0",
     "@inertiajs/core": "^2.3.6",
     "@inertiajs/vue3": "^2.0.0",
-    "@nuxt/ui": "^4.3.0",
     "@tailwindcss/vite": "^4.0.0",
     "@tanstack/vue-table": "^8.21.3",
     "@types/node": "^25.0.3",
+    "@unovis/ts": "^1.6.2",
+    "@unovis/vue": "^1.6.2",
     "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^14.1.0",
     "chart.js": "^4.5.1",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-vue": "^8.6.0",
     "laravel-vite-plugin": "^2.0.1",
     "laravel-vue-i18n": "^2.8.0",
     "lucide-vue-next": "^0.562.0",
+    "reka-ui": "^2.7.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "tw-animate-css": "^1.4.0",
+    "vaul-vue": "^0.4.1",
     "vee-validate": "^4.15.1",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vue": "^3.5.0",
     "vue-chartjs": "^5.3.3",
-    "zod": "^4.3.4"
+    "vue-input-otp": "^0.3.2",
+    "vue-sonner": "^2.0.9",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",
@@ -95,8 +103,6 @@
     "playwright": "^1.57.0",
     "storybook": "^10.1.11",
     "typescript": "~5.9.3",
-    "unplugin-auto-import": "^20.3.0",
-    "unplugin-vue-components": "^30.0.0",
     "vite": "^7.3.0",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-run": "^0.6.1",
@@ -110,8 +116,6 @@
     "@tailwindcss/vite": "^4.0.0",
     "laravel-vite-plugin": "^2.0.1",
     "laravel-vue-i18n": "^2.8.0",
-    "unplugin-auto-import": "^20.2.0",
-    "unplugin-vue-components": "^29.1.0",
     "vite-plugin-run": "^0.6.1",
     "vue": "^3.5.0"
   }

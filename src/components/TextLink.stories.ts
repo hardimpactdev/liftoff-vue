@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { defineComponent, h } from 'vue';
+import { defineComponent, h, reactive, toRefs } from 'vue';
 
 // Since we can't easily swap out the Inertia Link at runtime,
 // we create a mock component that mimics the TextLink styling
@@ -56,7 +56,7 @@ export const Default: Story = {
   render: (args) => ({
     components: { TextLinkMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: '<TextLinkMock v-bind="args">Click here</TextLinkMock>',
   }),
@@ -69,7 +69,7 @@ export const MultipleWords: Story = {
   render: (args) => ({
     components: { TextLinkMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: '<TextLinkMock v-bind="args">View the full documentation</TextLinkMock>',
   }),
@@ -87,7 +87,7 @@ export const InParagraph: Story = {
   render: (args) => ({
     components: { TextLinkMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <p>

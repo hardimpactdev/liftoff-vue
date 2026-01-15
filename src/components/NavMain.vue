@@ -24,7 +24,7 @@ const isActive = (item: NavItem): boolean => {
 
 <template>
   <nav class="space-y-1 px-2" aria-label="Main navigation">
-    <p v-if="!collapsed && label" class="mb-2 px-2 text-xs font-semibold uppercase text-muted">
+    <p v-if="!collapsed && label" class="mb-2 px-2 text-xs font-semibold uppercase text-muted-foreground">
       {{ label }}
     </p>
     <Link

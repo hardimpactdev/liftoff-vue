@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
+import { reactive, toRefs } from 'vue';
 import AppContent from './AppContent.vue';
 
 const meta: Meta<typeof AppContent> = {
@@ -32,7 +33,7 @@ export const Default: Story = {
   render: (args) => ({
     components: { AppContent },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="h-96 bg-neutral-100 dark:bg-neutral-900">
@@ -57,7 +58,7 @@ export const SidebarVariant: Story = {
   render: (args) => ({
     components: { AppContent },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="h-96 bg-neutral-100 dark:bg-neutral-900">
@@ -82,7 +83,7 @@ export const HeaderVariant: Story = {
   render: (args) => ({
     components: { AppContent },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="h-96 bg-neutral-100 dark:bg-neutral-900">

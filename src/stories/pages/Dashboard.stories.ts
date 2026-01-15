@@ -86,26 +86,36 @@ const AppSidebarMock = defineComponent({
   `,
 });
 
+import { Card, CardContent } from '@/components/card';
+
 // Dashboard page content component
 const DashboardContent = defineComponent({
   name: 'DashboardContent',
-  components: { PlaceholderPattern },
+  components: { PlaceholderPattern, Card, CardContent },
   template: `
     <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
       <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div class="relative aspect-video overflow-hidden rounded-xl bg-muted/50">
-          <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-        </div>
-        <div class="relative aspect-video overflow-hidden rounded-xl bg-muted/50">
-          <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-        </div>
-        <div class="relative aspect-video overflow-hidden rounded-xl bg-muted/50">
-          <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-        </div>
+        <Card class="py-0">
+            <CardContent class="p-0 relative aspect-video overflow-hidden rounded-xl bg-muted/50">
+                 <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            </CardContent>
+        </Card>
+        <Card class="py-0">
+            <CardContent class="p-0 relative aspect-video overflow-hidden rounded-xl bg-muted/50">
+                 <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            </CardContent>
+        </Card>
+        <Card class="py-0">
+            <CardContent class="p-0 relative aspect-video overflow-hidden rounded-xl bg-muted/50">
+                 <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+            </CardContent>
+        </Card>
       </div>
-      <div class="relative min-h-[50vh] flex-1 overflow-hidden rounded-xl bg-muted/50 md:min-h-min">
-        <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-      </div>
+      <Card class="flex-1 py-0">
+        <CardContent class="p-0 relative min-h-[50vh] h-full overflow-hidden rounded-xl bg-muted/50 md:min-h-min">
+            <PlaceholderPattern class="h-full w-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+        </CardContent>
+      </Card>
     </div>
   `,
 });

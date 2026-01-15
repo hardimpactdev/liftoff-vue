@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { fn, within, userEvent, expect } from 'storybook/test';
-import { ref, reactive } from 'vue';
+import { ref, reactive, toRefs } from 'vue';
 import Modal from '@nuxt/ui/components/Modal.vue';
 import Button from '@nuxt/ui/components/Button.vue';
 import Input from '@nuxt/ui/components/Input.vue';
@@ -142,7 +142,7 @@ export const Default: Story = {
   render: (args) => ({
     components: { DeleteUserMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="max-w-2xl">
@@ -159,7 +159,7 @@ export const OpenModal: Story = {
   render: (args) => ({
     components: { DeleteUserMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="max-w-2xl">
@@ -189,7 +189,7 @@ export const WithValidation: Story = {
   render: (args) => ({
     components: { DeleteUserMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="max-w-2xl">
@@ -207,7 +207,7 @@ export const WithPasswordEntry: Story = {
   render: (args) => ({
     components: { DeleteUserMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="max-w-2xl">
@@ -225,7 +225,7 @@ export const CancelModal: Story = {
   render: (args) => ({
     components: { DeleteUserMock },
     setup() {
-      return { args };
+      return { args: toRefs(reactive(args)) };
     },
     template: `
       <div class="max-w-2xl">

@@ -1,4 +1,4 @@
-# Liftoff Vue
+# Craft UI
 
 A Vue 3 component library for building clean, calm user interfaces. Built on top of [Nuxt UI](https://ui.nuxt.com) with additional layout, navigation, and data visualization components.
 
@@ -15,9 +15,9 @@ A Vue 3 component library for building clean, calm user interfaces. Built on top
 ## Installation
 
 ```bash
-npm install @hardimpactdev/liftoff-vue
+npm install @hardimpactdev/craft-ui
 # or
-bun add @hardimpactdev/liftoff-vue
+bun add @hardimpactdev/craft-ui
 ```
 
 ## Quick Start
@@ -28,9 +28,9 @@ Use the provided Vite configuration helper for Laravel + Inertia + Vue apps:
 
 ```typescript
 // vite.config.ts
-import { defineLiftoffConfig } from '@hardimpactdev/liftoff-vue/vite';
+import { defineCraftConfig } from '@hardimpactdev/craft-ui/vite';
 
-export default defineLiftoffConfig({
+export default defineCraftConfig({
   laravel: {
     input: ['resources/js/app.ts'],
   },
@@ -48,7 +48,7 @@ This includes:
 
 ```typescript
 // app.ts
-import '@hardimpactdev/liftoff-vue/style.css';
+import '@hardimpactdev/craft-ui/style.css';
 ```
 
 ## Components
@@ -57,7 +57,7 @@ import '@hardimpactdev/liftoff-vue/style.css';
 
 ```vue
 <script setup>
-import { AppShell, AppSidebar, AppContent } from '@hardimpactdev/liftoff-vue';
+import { AppShell, AppSidebar, AppContent } from '@hardimpactdev/craft-ui';
 </script>
 
 <template>
@@ -82,7 +82,7 @@ import {
   KanbanColumnHeader,
   KanbanColumnCards,
   KanbanCard
-} from '@hardimpactdev/liftoff-vue';
+} from '@hardimpactdev/craft-ui';
 import { ref } from 'vue';
 
 const todoCards = ref([
@@ -109,7 +109,7 @@ const todoCards = ref([
 
 ```vue
 <script setup>
-import { CommandModal } from '@hardimpactdev/liftoff-vue';
+import { CommandModal } from '@hardimpactdev/craft-ui';
 import { ref } from 'vue';
 
 const isOpen = ref(false);
@@ -134,7 +134,7 @@ const groups = [
 
 ```vue
 <script setup>
-import { ChartLine } from '@hardimpactdev/liftoff-vue';
+import { ChartLine } from '@hardimpactdev/craft-ui';
 
 const data = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -155,10 +155,18 @@ const data = {
 ### Layout
 - `AppShell` - Application shell with sidebar support
 - `AppSidebar` - Collapsible sidebar navigation
+- `AppSidebarHeader` - Sidebar header with logo and collapse toggle
 - `AppContent` - Main content area
 - `NavMain` / `NavFooter` / `NavUser` - Navigation components
 - `Breadcrumbs` - Breadcrumb navigation
 - `UserInfo` - User avatar and info display
+- `UserMenuContent` - User dropdown menu content
+
+### Layouts (Full Page)
+- `AppLayout` - Base application layout
+- `AppSidebarLayout` - Application layout with sidebar
+- `AuthSimpleLayout` - Simple authentication page layout
+- `SettingsLayout` - Settings page layout
 
 ### Kanban
 - `Kanban` - Main container
@@ -172,6 +180,31 @@ const data = {
 - `Command` - Standalone command palette
 - `CommandModal` - Modal version (⌘K shortcut)
 
+### Toast
+- `Toaster` - Toast notification container
+- `useToast` - Composable for triggering toasts
+
+```vue
+<script setup>
+import { Toaster, useToast } from '@hardimpactdev/craft-ui';
+
+const toast = useToast();
+
+function showToast() {
+  toast.add({
+    title: 'Success!',
+    description: 'Your changes have been saved.',
+    color: 'success',
+  });
+}
+</script>
+
+<template>
+  <Toaster />
+  <Button @click="showToast">Show Toast</Button>
+</template>
+```
+
 ### Charts
 - `Chart` - Generic chart component
 - `ChartLine` - Line chart
@@ -180,15 +213,40 @@ const data = {
 - `ChartPie` - Pie chart
 - `ChartDoughnut` - Doughnut chart
 
+### Form Components
+- `Label` - Form field label
+- `InputError` - Error message display for form inputs
+
+### Typography
+- `Heading` - Page heading component
+- `HeadingSmall` - Smaller heading component
+- `TextLink` - Styled link component
+
 ### Utilities
 - `PlaceholderPattern` - SVG pattern for empty states
 - `Icon` - Icon component wrapper
+- `AppLogo` - Application logo component
+- `AppLogoIcon` - Icon-only logo component
+- `AppearanceTabs` - Theme/appearance toggle tabs
+- `DeleteUser` - User account deletion component
 
 ## Composables
 
 - `useAppearance` - Theme/appearance management
 - `useInitials` - Generate initials from names
 - `useLanguage` - Language/locale utilities
+- `useToast` - Toast notification management
+
+## Utilities
+
+- `cn` - Class name helper (clsx + tailwind-merge)
+- `__` - Translation helper (from laravel-vue-i18n)
+- `can` - Permission check utility
+
+## Nuxt UI Re-exports
+
+The library re-exports commonly used Nuxt UI components:
+- `Button`, `Input`, `Checkbox`, `Select`, `Textarea`, `FormField`
 
 ## Development
 

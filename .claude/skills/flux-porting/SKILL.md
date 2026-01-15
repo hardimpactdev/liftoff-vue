@@ -1,6 +1,6 @@
 ---
 name: flux-porting
-description: Port Flux UI (Livewire) components to Vue 3. Use when creating new liftoff-vue components based on Flux UI designs.
+description: Port Flux UI (Livewire) components to Vue 3. Use when creating new craft-ui components based on Flux UI designs.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

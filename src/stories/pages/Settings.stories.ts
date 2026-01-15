@@ -11,6 +11,10 @@ import UserInfo from '@/components/UserInfo.vue';
 import Heading from '@/components/Heading.vue';
 import HeadingSmall from '@/components/HeadingSmall.vue';
 import AppearanceTabs from '@/components/AppearanceTabs.vue';
+import { Input } from '@/components/input';
+import { Label } from '@/components/label';
+import { Button } from '@/components/button';
+import { Separator } from '@/components/separator';
 import type { NavItem, BreadcrumbItem } from '@/types';
 import { mockUser } from '../../../.storybook/inertia-mock';
 
@@ -122,7 +126,7 @@ const SettingsLayoutMock = defineComponent({
 // Profile form content with proper styled inputs
 const ProfileContent = defineComponent({
   name: 'ProfileContent',
-  components: { HeadingSmall },
+  components: { HeadingSmall, Input, Label, Button, Separator },
   setup() {
     const form = reactive({
       name: mockUser.name,
@@ -150,35 +154,29 @@ const ProfileContent = defineComponent({
       />
       <form @submit.prevent="submit" class="space-y-6">
         <div class="grid gap-2">
-          <label for="name" class="text-sm font-medium leading-none">Name</label>
-          <input
+          <Label for="name">Name</Label>
+          <Input
             id="name"
             v-model="form.name"
             type="text"
             autocomplete="name"
             placeholder="Full name"
-            class="flex h-10 w-full rounded-lg border border-border border-b-zinc-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-xs"
           />
         </div>
         <div class="grid gap-2">
-          <label for="email" class="text-sm font-medium leading-none">Email address</label>
-          <input
+          <Label for="email">Email address</Label>
+          <Input
             id="email"
             v-model="form.email"
             type="email"
             autocomplete="email"
             placeholder="Email address"
-            class="flex h-10 w-full rounded-lg border border-border border-b-zinc-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-xs"
           />
         </div>
         <div class="flex items-center gap-4">
-          <button
-            type="submit"
-            :disabled="processing"
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 shadow-xs"
-          >
+          <Button type="submit" :disabled="processing">
             {{ processing ? 'Saving...' : 'Save' }}
-          </button>
+          </Button>
           <Transition
             enter-active-class="transition ease-in-out"
             enter-from-class="opacity-0"
@@ -190,7 +188,7 @@ const ProfileContent = defineComponent({
         </div>
       </form>
 
-      <div class="h-px bg-border" />
+      <Separator />
 
       <div class="space-y-6">
         <HeadingSmall
@@ -202,12 +200,9 @@ const ProfileContent = defineComponent({
             <p class="text-sm font-medium text-red-800 dark:text-red-200">Warning</p>
             <p class="mt-1 text-sm text-red-700 dark:text-red-300">Please proceed with caution, this cannot be undone.</p>
           </div>
-          <button
-            type="button"
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-red-600 text-white hover:bg-red-700 h-10 px-4 py-2"
-          >
+          <Button variant="destructive">
             Delete account
-          </button>
+          </Button>
         </div>
       </div>
     </div>
@@ -217,7 +212,7 @@ const ProfileContent = defineComponent({
 // Password form content with proper styled inputs
 const PasswordContent = defineComponent({
   name: 'PasswordContent',
-  components: { HeadingSmall },
+  components: { HeadingSmall, Input, Label, Button },
   setup() {
     const form = reactive({
       current_password: '',
@@ -249,46 +244,39 @@ const PasswordContent = defineComponent({
       />
       <form @submit.prevent="submit" class="space-y-6">
         <div class="grid gap-2">
-          <label for="current_password" class="text-sm font-medium leading-none">Current password</label>
-          <input
+          <Label for="current_password">Current password</Label>
+          <Input
             id="current_password"
             v-model="form.current_password"
             type="password"
             autocomplete="current-password"
             placeholder="Current password"
-            class="flex h-10 w-full rounded-lg border border-border border-b-zinc-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-xs"
           />
         </div>
         <div class="grid gap-2">
-          <label for="password" class="text-sm font-medium leading-none">New password</label>
-          <input
+          <Label for="password">New password</Label>
+          <Input
             id="password"
             v-model="form.password"
             type="password"
             autocomplete="new-password"
             placeholder="New password"
-            class="flex h-10 w-full rounded-lg border border-border border-b-zinc-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-xs"
           />
         </div>
         <div class="grid gap-2">
-          <label for="password_confirmation" class="text-sm font-medium leading-none">Confirm password</label>
-          <input
+          <Label for="password_confirmation">Confirm password</Label>
+          <Input
             id="password_confirmation"
             v-model="form.password_confirmation"
             type="password"
             autocomplete="new-password"
             placeholder="Confirm password"
-            class="flex h-10 w-full rounded-lg border border-border border-b-zinc-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-xs"
           />
         </div>
         <div class="flex items-center gap-4">
-          <button
-            type="submit"
-            :disabled="processing"
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 shadow-xs"
-          >
+          <Button type="submit" :disabled="processing">
             {{ processing ? 'Saving...' : 'Save password' }}
-          </button>
+          </Button>
           <Transition
             enter-active-class="transition ease-in-out"
             enter-from-class="opacity-0"

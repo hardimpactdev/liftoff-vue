@@ -13,6 +13,9 @@ export function useAppConfig() {
         error: 'red',
         neutral: 'zinc',
       },
+      icons: {
+        close: 'lucide:x',
+      },
     },
   });
 }

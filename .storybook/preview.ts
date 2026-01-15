@@ -6,6 +6,7 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import NuxtLinkMock from './nuxt-link-mock';
 import '../src/style.css';
+import 'vue-sonner/style.css';
 
 // Create a mock router for Storybook (Nuxt UI Link component uses vue-router)
 const mockRouter = createRouter({
@@ -18,7 +19,7 @@ const mockRouter = createRouter({
 
 // Register NuxtLink mock and vue-router globally
 setup((app) => {
-  app.component('NuxtLink', NuxtLinkMock);
+  // app.component('NuxtLink', NuxtLinkMock);
   app.use(mockRouter);
 });
 

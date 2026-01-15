@@ -20,10 +20,10 @@ const sampleBreadcrumbs: BreadcrumbItemType[] = [
 const longPathBreadcrumbs: BreadcrumbItemType[] = [
   { title: 'Home', href: '/' },
   { title: 'Projects', href: '/projects' },
-  { title: 'Liftoff', href: '/projects/liftoff' },
-  { title: 'Components', href: '/projects/liftoff/components' },
-  { title: 'Navigation', href: '/projects/liftoff/components/navigation' },
-  { title: 'Header', href: '/projects/liftoff/components/navigation/header' },
+  { title: 'Craft', href: '/projects/craft' },
+  { title: 'Components', href: '/projects/craft/components' },
+  { title: 'Navigation', href: '/projects/craft/components/navigation' },
+  { title: 'Header', href: '/projects/craft/components/navigation/header' },
 ];
 
 const meta: Meta<typeof AppSidebarHeader> = {
