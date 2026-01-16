@@ -26,7 +26,7 @@ const forwardedProps = useForwardProps(delegatedProps)
 
 <template>
   <ToggleGroupItem
-    v-slot="slotProps"
+    v-slot="slotProps: any"
     data-slot="toggle-group-item"
     :data-variant="context?.variant || variant"
     :data-size="context?.size || size"

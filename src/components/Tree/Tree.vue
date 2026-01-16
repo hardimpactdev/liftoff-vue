@@ -3,16 +3,7 @@ import { computed, ref } from 'vue';
 import { TreeRoot, TreeItem as RekaTreeItem } from 'reka-ui';
 import { cn } from '@/lib/utils';
 import Icon from '../Icon.vue';
-
-export interface TreeNode {
-  id: string;
-  label: string;
-  icon?: string;
-  children?: TreeNode[];
-  disabled?: boolean;
-  defaultExpanded?: boolean;
-  [key: string]: unknown;
-}
+import type { TreeNode } from './types';
 
 interface Props {
   items: TreeNode[];

@@ -41,6 +41,7 @@
       "import": "./dist/craft-ui.js",
       "types": "./dist/index.d.ts"
     },
+    "./style.css": "./dist/craft-ui.css",
     "./vite": {
       "import": "./dist/vite/defineCraftConfig.js",
       "types": "./dist/src/vite/defineCraftConfig.d.ts"
@@ -55,7 +56,11 @@
     "preview": "vite preview",
     "storybook": "LAUNCH_EDITOR=cursor storybook dev -p 6006",
     "copy-vite-plugin": "mkdir -p dist/vite/ts && cp -r src/vite/*.ts dist/vite/ts/ && npx esbuild src/vite/*.ts --outdir=dist/vite --format=esm",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "dependencies": {
     "@iconify/vue": "^5.0.0",
@@ -75,6 +80,7 @@
     "laravel-vite-plugin": "^2.0.1",
     "laravel-vue-i18n": "^2.8.0",
     "lucide-vue-next": "^0.562.0",
+    "oxlint": "^1.39.0",
     "reka-ui": "^2.7.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
@@ -100,6 +106,7 @@
     "@vitest/coverage-v8": "^4.0.16",
     "@vue/tsconfig": "^0.8.1",
     "glob": "^13.0.0",
+    "oxfmt": "^0.24.0",
     "playwright": "^1.57.0",
     "storybook": "^10.1.11",
     "typescript": "~5.9.3",
