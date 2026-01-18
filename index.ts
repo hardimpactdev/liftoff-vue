@@ -29,6 +29,10 @@ import UserInfo from './src/components/UserInfo.vue';
 import UserMenuContent from './src/components/UserMenuContent.vue';
 import TextLink from './src/components/TextLink.vue';
 import InputError from './src/components/InputError.vue';
+import Heading from './src/components/Heading.vue';
+import HeadingSmall from './src/components/HeadingSmall.vue';
+import AppearanceTabs from './src/components/AppearanceTabs.vue';
+import DeleteUser from './src/components/DeleteUser.vue';
 
 // Plugins
 import i18n from './src/plugins/i18n.ts';
@@ -146,6 +150,10 @@ export {
     UserMenuContent,
     TextLink,
     InputError,
+    Heading,
+    HeadingSmall,
+    AppearanceTabs,
+    DeleteUser,
     // Composables
     useAppearance,
     useInitials,
