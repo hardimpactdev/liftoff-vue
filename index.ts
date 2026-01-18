@@ -1,13 +1,34 @@
 export const styles = () => import('./src/style.css');
 
-// Layouts
+// Layouts - Auth
 import AuthLayout from './src/layouts/auth/AuthLayout.vue';
 import AuthSimpleLayout from './src/layouts/auth/AuthSimpleLayout.vue';
 import AuthCardLayout from './src/layouts/auth/AuthCardLayout.vue';
 import AuthSplitLayout from './src/layouts/auth/AuthSplitLayout.vue';
-// import AppLayout from './src/layouts/app/AppLayout.vue';
-// import AppSidebarLayout from './src/layouts/app/AppSidebarLayout.vue';
+
+// Layouts - App
+import AppHeaderLayout from './src/layouts/app/AppHeaderLayout.vue';
+import AppSidebarLayout from './src/layouts/app/AppSidebarLayout.vue';
+
+// Layouts - Settings
 import SettingsLayout from './src/layouts/settings/SettingsLayout.vue';
+
+// App Components
+import AppShell from './src/components/AppShell.vue';
+import AppContent from './src/components/AppContent.vue';
+import AppHeader from './src/components/AppHeader.vue';
+import AppSidebar from './src/components/AppSidebar.vue';
+import AppSidebarHeader from './src/components/AppSidebarHeader.vue';
+import AppLogo from './src/components/AppLogo.vue';
+import AppLogoIcon from './src/components/AppLogoIcon.vue';
+import Breadcrumbs from './src/components/Breadcrumbs.vue';
+import NavMain from './src/components/NavMain.vue';
+import NavFooter from './src/components/NavFooter.vue';
+import NavUser from './src/components/NavUser.vue';
+import UserInfo from './src/components/UserInfo.vue';
+import UserMenuContent from './src/components/UserMenuContent.vue';
+import TextLink from './src/components/TextLink.vue';
+import InputError from './src/components/InputError.vue';
 
 // Plugins
 import i18n from './src/plugins/i18n.ts';
@@ -99,14 +120,32 @@ export {
     cn,
     __,
     can,
-    // Layouts
+    // Layouts - Auth
     AuthLayout,
     AuthSimpleLayout,
     AuthCardLayout,
     AuthSplitLayout,
-    // AppLayout,
-    // AppSidebarLayout,
+    // Layouts - App
+    AppHeaderLayout,
+    AppSidebarLayout,
+    // Layouts - Settings
     SettingsLayout,
+    // App Components
+    AppShell,
+    AppContent,
+    AppHeader,
+    AppSidebar,
+    AppSidebarHeader,
+    AppLogo,
+    AppLogoIcon,
+    Breadcrumbs,
+    NavMain,
+    NavFooter,
+    NavUser,
+    UserInfo,
+    UserMenuContent,
+    TextLink,
+    InputError,
     // Composables
     useAppearance,
     useInitials,
